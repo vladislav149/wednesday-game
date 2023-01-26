@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wednesday</title>
+    <link rel="stylesheet" href="other/css/reset.css" />
+    <link rel="stylesheet" href="other/css/fonts.css" />
+    <link rel="stylesheet" href="other/css/spinner.css" />
+    <link rel="stylesheet" href="other/css/styles.css" />
+    <script src="other/js/vue.js"></script>
+  </head>
+  <body>
+    <!-- <div class="wrapper-1">
+      <div class="sample">
+        <header class="header">
+          <div class="container t-a-center">
+            <h1 class="title">{Wednesday}</h1>
+          </div>
+        </header>
+      </div>
+    </div> -->
+    <div class="wrapper-1">
+      <div class="sample">
+        <video ref="video" class="video" preload="auto" loop="loop">
+          <source
+            src="other/video/Wednesday Addams.mp4"
+            type='video/ogg; codecs="theora,
+    vorbis"'
+          />
+          <source
+            src="other/video/Wednesday Addams.mp4"
+            type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+          />
+          <source
+            src="other/video/Wednesday Addams.mp4"
+            type='video/webm;
+    codecs="vp8, vorbis"'
+          />
+          Тег video не поддерживается вашим браузером.
+        </video>
+        <transition appear name="cards">
+          <ul v-if="started" class="cards">
+            <li class="cards__card cards__card--top-left">
+              <button class="cards__button cards__button--tyler"></button>
+            </li>
+            <li class="cards__card cards__card--top-right">
+              <button class="cards__button cards__button--inid"></button>
+            </li>
+            <li class="cards__card cards__card--center">
+              <button class="cards__button cards__button--wednesday"></button>
+            </li>
+            <li class="cards__card cards__card--bottom-left">
+              <button class="cards__button cards__button--hunter"></button>
+            </li>
+            <li class="cards__card cards__card--bottom-right">
+              <button class="cards__button cards__button--xavier"></button>
+            </li>
+          </ul>
+        </transition>
+        <transition appear name="cards">
+          <button @click="endGame" v-if="started" class="end">
+            <img src="other/icons/exit.svg" alt="exit" />
+          </button>
+        </transition>
+        <transition appear name="start">
+          <button
+            v-if="!started"
+            @click="startGame"
+            :disabled="cantStart"
+            class="start"
+          >
+            <div v-if="cantStart" class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <span v-else>Старт!</span>
+          </button>
+        </transition>
+      </div>
+    </div>
+    <script>
+      Vue.createApp({
+        data: () => ({
+          cantStart: true,
+          started: false
+        }),
+        mounted() {
+          setTimeout(() => (this.cantStart = false), 1000)
+        },
+        methods: {
+          startGame() {
+            this.$refs.video.play()
+            document.documentElement.requestFullscreen()
+            this.started = true
+          },
+          endGame() {
+            this.$refs.video.pause()
+            this.$refs.video.currentTime = 0
+            document.exitFullscreen()
+            this.started = false
+          }
+        }
+      }).mount('.sample')
+    </script>
+  </body>
+</html>
